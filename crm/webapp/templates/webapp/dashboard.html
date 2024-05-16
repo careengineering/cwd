@@ -8,12 +8,13 @@
 
         <h5> Welcome to the dashboard {{user}}! </h5>
         <hr>
-        <a href="{% url 'create-record' %}" class="btn btn-outline-primary btn-sm">Create a new record</a>
+        <a href="{% url 'create-record' %}" class="btn btn-outline-primary btn-sm">Create a new record &nbsp; <i class="fa fa-plus-circle" aria-hidden="true"></i></a>
         <hr>
 
         <table class="table table-hover table-bordered">
             <thead class="table-light">
                 <tr>
+                    <th scope="col"> No </th>
                     <th scope="col"> ID </th>
                     <th scope="col"> Full Name </th>
                     <th scope="col"> Email </th>
@@ -30,6 +31,7 @@
                 {% if records %}
                     {% for record in records %}
                     <tr>
+                        <td>{{ forloop.counter }}</td>
                         <td>{{record.id}}</td>
                         <td> {{record.first_name}} {{record.last_name}}</td>
                         <td>{{record.email}}</td>
@@ -39,7 +41,8 @@
                         <td>{{record.province}}</td>
                         <td>{{record.country}}</td>
                         <td>{{record.creation_date}}</td>
-                        <td></td>
+                        <td><a class="btn btn-success btn-sm" href="{% url 'record' record.id %}">&nbsp;<i
+                        class="fa fa-eye" aria-hidden="true"></i></a></td>
                     </tr>
                     {% endfor %}
                 {% endif %}
